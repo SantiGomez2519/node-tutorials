@@ -13,10 +13,10 @@
 
                         <div>
                             <h2 class="text-2xl font-bold text-gray-800 mb-6">
-                                <%= book.title %>
+                                <%= viewData["book"].getTitle() %>
                             </h2>
                             <div class="prose text-gray-600">
-                                <p class="mb-4">"<%= book.title %>" is an outstanding work in the <%= book.category
+                                <p class="mb-4">"<%= viewData["book"].getTitle() %>" is an outstanding work in the <%= viewData["book"].getCategory()
                                             %> category.
                                             This work is an important part of our collection and has been carefully
                                             selected to enrich the reading experience
@@ -33,23 +33,23 @@
                             <div class="flex justify-between">
                                 <span class="text-gray-600">Title:</span>
                                 <span class="font-medium">
-                                    <%= book.title %>
+                                    <%= viewData["book"].getTitle() %>
                                 </span>
                             </div>
                             <div class="flex justify-between">
                                 <span class="text-gray-600">Category:</span>
                                 <span class="font-medium">
-                                    <%= book.Category %>
+                                    <%= viewData["book"].getCategory() %>
                                 </span>
                             </div>
                             <div class="flex justify-between">
                                 <span class="text-gray-600">Price:</span>
-                                <span class="font-medium">$<%= book.price.toLocaleString() %></span>
+                                <span class="font-medium">$<%= viewData["book"].getPrice().toLocaleString() %></span>
                             </div>
                             <div class="flex justify-between">
                                 <span class="text-gray-600">Stock:</span>
                                 <span class="font-medium">
-                                    <%= book.stock %>
+                                    <%= viewData["book"].getStock() %>
                                 </span>
                             </div>
                         </div>
