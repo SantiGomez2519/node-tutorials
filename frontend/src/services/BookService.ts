@@ -8,6 +8,14 @@ export class BookService {
     return useBookStore().books;
   }
 
+  static getUniqueBookCategories(): string[] {
+    const books = this.getBooks();
+    const categories = books.map((book) => book.category);
+    const uniqueCategories = new Set(categories);
+
+    return Array.from(uniqueCategories);
+  }
+
   static getBookById(id: number): BookInterface | undefined {
     return useBookStore().books.find((book) => book.id === id);
   }

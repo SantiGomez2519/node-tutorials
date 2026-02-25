@@ -1,26 +1,14 @@
 <script setup lang="ts">
 import { BookService } from '@/services/BookService';
-import OtherService from '@/services/OtherService';
-import { ref, watch} from 'vue';
+import { formatToCOP } from '@/utils/formatters';
+import { ref, watch } from 'vue';
 
 const books = BookService.getBooks();
 const filteredBooks = ref(books);
 
 // selectors
-const selectorCategories = OtherService.getUniqueBookCategories();
+const selectorCategories = BookService.getUniqueBookCategories();
 const selectedCategory = ref('');
-
-//functions
-function formatToCOP(price: number): string {
-  const formatter = new Intl.NumberFormat('es-CO', {
-    style: 'currency',
-    currency: 'COP',
-    minimumFractionDigits: 0,
-    maximumFractionDigits: 0,
-  });
-
-  return formatter.format(price).replace(/^\s*\$\s?/, '');
-}
 
 // watchers
 watch(selectedCategory, (newCategory) => {
@@ -30,7 +18,6 @@ watch(selectedCategory, (newCategory) => {
     filteredBooks.value = books;
   }
 });
-
 </script>
 
 <template>
@@ -45,7 +32,10 @@ watch(selectedCategory, (newCategory) => {
       </div>
 
       <div class="flex justify-end mb-6">
-        <select v-model="selectedCategory" class="w-full border border-gray-300 rounded py-2 px-3 focus:outline-none focus:ring focus:border-blue-300">
+        <select
+          v-model="selectedCategory"
+          class="w-full border border-gray-300 rounded py-2 px-3 focus:outline-none focus:ring focus:border-blue-300"
+        >
           <option value="">All Categories</option>
           <option v-for="category in selectorCategories" :key="category" :value="category">
             {{ category }}
