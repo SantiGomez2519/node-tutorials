@@ -3,7 +3,8 @@ import type { CreateReviewDTO } from '@/dtos/CreateReviewDTO';
 import axios from 'axios';
 
 export class ReviewService {
-  private static readonly API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000';
+  private static readonly API_BASE_URL =
+    import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000';
   private static readonly API_URL = `${this.API_BASE_URL}/api/reviews`;
 
   static async getReviews(): Promise<ReviewInterface[]> {
