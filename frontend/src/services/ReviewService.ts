@@ -1,4 +1,5 @@
 import type { ReviewInterface } from '@/interfaces/ReviewInterface';
+import type { CreateReviewDTO } from '@/dtos/CreateReviewDTO';
 import axios from 'axios';
 
 export class ReviewService {
@@ -14,7 +15,7 @@ export class ReviewService {
     return data;
   }
 
-  static async createReview(review: Omit<ReviewInterface, 'id'>): Promise<ReviewInterface> {
+  static async createReview(review: CreateReviewDTO): Promise<ReviewInterface> {
     const { data } = await axios.post(this.API_URL, review);
     return data;
   }

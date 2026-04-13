@@ -2,6 +2,7 @@
 import { onMounted, ref } from 'vue';
 import { ReviewService } from '@/services/ReviewService.js';
 import type { ReviewInterface } from '@/interfaces/ReviewInterface.js';
+import { formatDate } from '@/utils/formatters.js';
 
 const props = defineProps<{
   bookId: number;
@@ -24,21 +25,12 @@ async function submitReview() {
     bookId: props.bookId,
     rating: Math.min(5, Math.max(1, form.value.rating)),
     comment: form.value.comment.trim(),
-    author: form.value.author.trim() || undefined,
+    author: form.value.author.trim(),
   });
   form.value = { rating: 5, comment: '', author: '' };
   isSubmitting.value = false;
 
   getReviews();
-}
-
-function formatDate(iso?: string): string {
-  if (!iso) return '';
-  return new Date(iso).toLocaleDateString('es-CO', {
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric',
-  });
 }
 
 async function getReviews() {
