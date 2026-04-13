@@ -29,12 +29,6 @@ async function submitForm() {
   } catch (error) {
     console.error(error);
   }
-  BookService.createBook(newBook);
-  successMessage.value = 'Book created successfully!';
-  title.value = '';
-  category.value = '';
-  price.value = 0;
-  stock.value = 0;
 }
 </script>
 
